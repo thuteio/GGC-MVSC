@@ -1,0 +1,19 @@
+function [y_init,snh] = finchpp(A0, c)
+
+    snh=0;
+    % graph FINCH initialization
+    [esti_y, esti_num_clust] = FINCH(A0, [], 0);
+    idx = find(esti_num_clust == c, 1);
+    if ~isempty(idx)
+        y_init = esti_y(:, idx);
+    elseif any(esti_num_clust > c)
+        refine_starter = find(esti_num_clust > c, 1, 'last');
+        y_init = req_numclust(esti_y(:, refine_starter), A0, c);
+    else
+        snh=-1;
+        y_init=-1;
+        return;
+        %error('FINCH failed to find cluster');
+    end
+    y_init = ind2vec(y_init')';
+end
