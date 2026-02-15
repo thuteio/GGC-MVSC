@@ -10,7 +10,7 @@ main_GCFC.m --Run the fuzzy multi-view clustering algorithm GCFC
 The procedure regarding the clustering evaluation index.
 
 ### data
-Six multi-view datasets:
+Three multi-view datasets:
 3Sources; 100leaves; MSRC
 
 ### FGCG
